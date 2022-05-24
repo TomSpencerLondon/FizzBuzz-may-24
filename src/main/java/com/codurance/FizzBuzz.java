@@ -1,9 +1,8 @@
 package com.codurance;
 
-import static java.util.stream.Collectors.*;
-
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.function.BiPredicate;
+import java.util.function.Predicate;
 import java.util.stream.IntStream;
 
 public class FizzBuzz {
@@ -13,19 +12,18 @@ public class FizzBuzz {
         .toList();
   }
 
-  public String convertIntToFizzBuzz(int number) {
-    boolean isDivisibleByFive = number % 5 == 0;
-    boolean isDivisibleByThree = number % 3 == 0;
+  public String convertIntToFizzBuzz(final int number) {
+    BiPredicate<Integer, Integer> isDivisibleBy = (a, b)  -> a % b == 0;
 
     StringBuilder output = new StringBuilder();
 
-    if (isDivisibleByFive && isDivisibleByThree) {
+    if (isDivisibleBy.test(number, 5) && isDivisibleBy.test(number, 3)) {
       output.append("FizzBuzz");
       return output.toString();
-    } else if (isDivisibleByFive) {
+    } else if (isDivisibleBy.test(number, 5)) {
       output.append("Buzz");
       return output.toString();
-    } else if (isDivisibleByThree) {
+    } else if (isDivisibleBy.test(number, 3)) {
       output.append("Fizz");
       return output.toString();
     }
