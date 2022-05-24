@@ -27,4 +27,15 @@ public class FizzBuzzTest {
     assertThat(result)
         .isEqualTo("Buzz");
   }
+
+  @Test
+  public void givenInputOfFifteenReturnFizzBuzz() {
+    FizzBuzz fizzBuzz = new FizzBuzz();
+    int input = 15;
+
+    String result = fizzBuzz.convert(input);
+
+    assertThat(result)
+        .isEqualTo("FizzBuzz");
+  }
 }
