@@ -5,7 +5,7 @@ import java.util.function.Function;
 import java.util.stream.IntStream;
 
 public class FizzBuzz {
-  private static String apply(Integer a) {
+  private String covertToFizzBuzz(Integer a) {
     if (a % 5 == 0 && a % 3 == 0) {
       return "FizzBuzz";
     } else if (a % 5 == 0) {
@@ -18,13 +18,8 @@ public class FizzBuzz {
   }
 
   public List<String> convert(int start, int end) {
-    return IntStream.rangeClosed(start, end).mapToObj(this::convertIntToFizzBuzz)
+    return IntStream.rangeClosed(start, end).mapToObj(this::covertToFizzBuzz)
         .toList();
   }
 
-  public String convertIntToFizzBuzz(final int number) {
-    Function<Integer, String> fizzBuzz = FizzBuzz::apply;
-
-    return fizzBuzz.apply(number);
-  }
 }
