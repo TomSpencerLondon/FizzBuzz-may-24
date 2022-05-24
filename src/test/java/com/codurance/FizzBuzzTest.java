@@ -2,6 +2,8 @@ package com.codurance;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.io.Serializable;
+import java.util.List;
 import org.junit.Test;
 
 public class FizzBuzzTest {
@@ -11,10 +13,10 @@ public class FizzBuzzTest {
     FizzBuzz fizzBuzz = new FizzBuzz();
     int input = 3;
 
-    String result = fizzBuzz.convert(input);
+    List<String> result = fizzBuzz.convert(1, input);
 
     assertThat(result)
-        .isEqualTo("Fizz");
+        .isEqualTo(List.of("1", "2", "Fizz"));
   }
 
   @Test
@@ -22,10 +24,12 @@ public class FizzBuzzTest {
     FizzBuzz fizzBuzz = new FizzBuzz();
     int input = 5;
 
-    String result = fizzBuzz.convert(input);
+    List<String> result = fizzBuzz.convert(1, input);
 
+    List<String> expected = List.of(
+        "1", "2", "Fizz", "4", "Buzz");
     assertThat(result)
-        .isEqualTo("Buzz");
+        .isEqualTo(expected);
   }
 
   @Test
@@ -33,9 +37,12 @@ public class FizzBuzzTest {
     FizzBuzz fizzBuzz = new FizzBuzz();
     int input = 15;
 
-    String result = fizzBuzz.convert(input);
+    List<String> result = fizzBuzz.convert(1, input);
 
+    List<String> expected = List.of(
+        "1", "2", "Fizz", "4", "Buzz", "Fizz", "7", "8", "Fizz",
+        "Buzz", "11", "Fizz", "13", "14", "FizzBuzz");
     assertThat(result)
-        .isEqualTo("FizzBuzz");
+        .isEqualTo(expected);
   }
 }
