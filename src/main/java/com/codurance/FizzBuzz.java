@@ -1,10 +1,8 @@
 package com.codurance;
 
 import java.util.List;
-import java.util.function.BiPredicate;
-import java.util.stream.Collectors;
+import java.util.function.Function;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 public class FizzBuzz {
 
@@ -14,24 +12,18 @@ public class FizzBuzz {
   }
 
   public String convertIntToFizzBuzz(final int number) {
-    BiPredicate<Integer, Integer> isDivisibleBy = (a, b)  -> a % b == 0;
+    Function<Integer, String> fizzBuzz = (a) -> {
+      if (a % 5 == 0 && a % 3 == 0) {
+        return "FizzBuzz";
+      } else if (a % 5 == 0) {
+        return "Buzz";
+      } else if (a % 3 == 0) {
+        return "Fizz";
+      } else {
+        return a.toString();
+      }
+    };
 
-    StringBuilder output = new StringBuilder();
-
-    if (isDivisibleBy.test(number, 5) && isDivisibleBy.test(number, 3)) {
-      return result(number, "FizzBuzz", isDivisibleBy.test(number, 3) && isDivisibleBy.test(number, 5));
-    } else if (isDivisibleBy.test(number, 5)) {
-      return result(number, "Buzz", isDivisibleBy.test(number, 5));
-    } else if (isDivisibleBy.test(number, 3)) {
-      return result(number, "Fizz", isDivisibleBy.test(number, 3));
-    }
-
-    return output.append(number).toString();
-  }
-
-  private String result(int number, String result, boolean test) {
-    return Stream.of(number)
-        .filter(i -> test)
-        .map((i) -> result).collect(Collectors.joining(""));
+    return fizzBuzz.apply(number);
   }
 }
