@@ -4,3 +4,6 @@ https://katalyst.codurance.com/fizzbuzz
 
 Following:
 https://codurance.atlassian.net/wiki/spaces/AC/pages/9863497/Test+Driven+Development
+
+#### Jqwik - property based testing
+https://jqwik.net/
