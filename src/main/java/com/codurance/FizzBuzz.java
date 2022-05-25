@@ -1,15 +1,21 @@
 package com.codurance;
 
 import java.util.List;
+import java.util.function.BiPredicate;
+import java.util.function.Predicate;
 import java.util.stream.IntStream;
 
 public class FizzBuzz {
   private String covertToFizzBuzz(Integer a) {
-    if (a % 5 == 0 && a % 3 == 0) {
+    BiPredicate<Integer, Integer> divisibleBy = (num, div) -> (num % div) == 0;
+    boolean divisibleByFive = divisibleBy.test(a, 5);
+    boolean divisibleByThree = divisibleBy.test(a, 3);
+
+    if (divisibleByFive && divisibleByThree) {
       return "FizzBuzz";
-    } else if (a % 5 == 0) {
+    } else if (divisibleByFive) {
       return "Buzz";
-    } else if (a % 3 == 0) {
+    } else if (divisibleByThree) {
       return "Fizz";
     } else {
       return a.toString();
